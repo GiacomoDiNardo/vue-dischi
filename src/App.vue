@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-  <TheHeader />
-  <CardContainer/>
+  <TheHeader :genre-list="genreList" @changeGenre="onChangeGenre($event)" />
+  <CardContainer @genresList="onGenresUpdate" :changeGenre="changeGenre" />
   </div>
 </template>
 
@@ -16,7 +16,23 @@ export default {
   components: {
     TheHeader,
     CardContainer,
-    
+  },
+
+  data() {
+    return {
+      genreList: [],
+      changeGenre: "",
+    }
+  },
+
+  methods: {
+    onGenresUpdate(genreList) {
+      this.genreList = genreList;
+    },
+
+    onChangeGenre(genre) {
+      this.changeGenre = genre;
+    }
   }
 }
 </script>
